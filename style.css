@@ -90,6 +90,24 @@ header{
 
 .subMenu{
     display:none;
+    width: 60vw;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.subMenu a{
+    text-decoration: none;
+    color: black;
+}
+
+.subMenu>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 70px;
+    background: linear-gradient(180deg, var(--orange-start) 0%, var(--orange-end)  175%);
+    border-radius: 20px;
 }
 
 main{
@@ -164,36 +182,37 @@ footer span{
 }
 
 @media (min-width:576px){
-    /* body{
-        background-color: red;
-    } */
+    
     .subMenuPhone,#menuPhone,#checkbox{
         display:none;
     }
 
     .subMenu{
         display:flex;
-        width: 60vw;
-        justify-content: space-evenly;
-    }
-
-    .subMenu>div{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 200px;
-        background: linear-gradient(180deg, var(--orange-start) 0%, var(--orange-end)  175%);
-        border-radius: 20px;
-    }
-
-    .subMenu a{
-        text-decoration: none;
-        color: black;
     }
 
     #logo{
         width: 200px;
     }
+
+    main{
+        height: 60vh;
+    }
+
+    #radio{
+        margin-top: 0px;
+        justify-content: space-around;
+    }
+
+    #radio>select, #radioImg{
+        width: 350px;
+    }
+
+    footer span{
+        width: 100px;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
 
 }
