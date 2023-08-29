@@ -1,6 +1,7 @@
 <script setup>
 
 import TheHeader from './components/TheHeader.vue';
+import TheFooter from './components/TheFooter.vue';
 
 </script>
 
@@ -8,8 +9,9 @@ import TheHeader from './components/TheHeader.vue';
 
 <TheHeader/>
 
-
 <router-view/>
+
+<TheFooter/>
 
 </template>
 

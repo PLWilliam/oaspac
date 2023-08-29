@@ -1,3 +1,13 @@
+@import './headfoot.css';
+
+:root{
+  --grey : #D9D9D9;
+  --orange-start : #fd7307;
+  --orange-end : #d61f1f;
+}
+
 body{
   margin:0;
+  /* background-color: red; */
 }
+
