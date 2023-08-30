@@ -13,26 +13,36 @@ const isMounted = ref(false);
 const play = ref([]);
 const isPlay = ref([]);
 
+const playLogo = ref([]);
 
+const audio = ref()
 
 const buttonPlayPause = (idx)=>{
 
-    const audio = document.querySelectorAll('audio');
+    // const audio = document.querySelectorAll('audio');
+
+    console.log(playLogo.value[idx])
 
     if(isPlay.value[idx]){
         play.value[idx] = 'play';
-        audio[idx].pause();
+        audio.value[idx].pause();
         isPlay.value[idx]=0;
+        playLogo.value[idx].classList.remove("fa-pause");
+        playLogo.value[idx].classList.add("fa-play");
     }
     else{
         for (let i = 0; i < isPlay.value.length; i++) {
             play.value[i]='play'
             isPlay.value[i]=0;     
-            audio[i].pause();
+            audio.value[i].pause();
+            playLogo.value[i].classList.remove("fa-pause");
+            playLogo.value[i].classList.add("fa-play");
         }
         isPlay.value[idx]=1;
         play.value[idx] = 'pause';
-        audio[idx].play();
+        audio.value[idx].play();
+        playLogo.value[idx].classList.add("fa-pause");
+        playLogo.value[idx].classList.remove("fa-play");
     }
 }
 
@@ -69,25 +79,20 @@ onBeforeMount(async()=>{
 
 <template>
 
-    <h1>Solo podcast</h1>
-
-
-    <div v-if="isMounted">
-
-        {{ currentPodcast.title }}
-        <img :src="currentPodcast.image" alt="" style="width: 50px;height: 50px;">
-
-        <div v-for="( episode,index ) in currentPodcast.items">
-            <!-- <p>{{ episode }}</p> -->
-            <p>{{ episode.itunes_duration }}</p>
-            <img :src="episode.itunes_image.href" alt="" style="width: 50px;height: 50px;">
-            <p>{{ episode.title }}</p>
-            <audio :src="episode.enclosures[0].url" controls></audio>
-            <button @click="buttonPlayPause(index)">{{ play[index] }}</button>
-
+    <main>
+        <div class="container">
+            <div class="allPodcast">
+                <div class="singlePodcast" v-for="( episode,index ) in currentPodcast.items">
+                    <img :src="episode.itunes_image.href" alt="">
+                    <span>{{ episode.title }}</span>
+                    <div class="playerPodcast" @click="buttonPlayPause(index)">
+                        <i class="fa-solid fa-play fa-xl" ref="playLogo"></i>
+                    </div>
+                    <audio :src="episode.enclosures[0].url" ref="audio"></audio>
+                </div>
+            </div>
         </div>
-    </div>
-
+    </main>
 
 
 </template>

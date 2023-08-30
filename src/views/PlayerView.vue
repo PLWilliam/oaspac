@@ -8,8 +8,13 @@ const currentRadio = ref();
 const currentRadioName = ref();
 const currentRadioImg = ref();
 const selectedRadio = ref();
-const play = ref('play');
+
 const isPlay = ref(true);
+const audio = ref();
+
+const playLogo = ref();
+
+
 
 
 const getAllRadio = async()=>{
@@ -32,34 +37,32 @@ const changeRadio = ()=>{
 }
 
 const buttonPlayPause = ()=>{
-    const audio = document.querySelector('#audio');
 
     if(isPlay.value){
-        play.value = 'pause';
-        audio.play();
+        audio.value.play();
         isPlay.value = false;
+        playLogo.value.classList.remove("fa-play");
+        playLogo.value.classList.add("fa-pause");
     }
     else{
-        play.value = 'play';
-        audio.pause();
+        audio.value.pause();
         isPlay.value = true;
+        playLogo.value.classList.remove("fa-pause");
+        playLogo.value.classList.add("fa-play");
     }
 }
 
 const updateRadioInfo = (radio)=>{
-
     selectedRadio.value = radio.nom;
     currentRadio.value = radio.fluxAudio;
     currentRadioName.value = radio;
     currentRadioImg.value = radio.imageURL;
-
-    play.value = 'play';
     isPlay.value = true;
 }
 
 
 onBeforeMount(async()=>{
-  const listRadio = await getAllRadio();
+  await getAllRadio();
 
 })
 
@@ -68,32 +71,25 @@ onBeforeMount(async()=>{
 
 <template>
 
-    <h1>Player</h1>
-    
-    <select v-model="selectedRadio" v-on:change="changeRadio">
-        <option :value="radio.nom" v-for="radio in tabRadio">
-            {{ radio.nom }}
-        </option>
-    </select>
-
-    <audio :src="currentRadio" id="audio"></audio>
-
-    <button @click="buttonPlayPause">{{ play }}</button>
-    {{currentRadioName}}
-
-    <img :src="currentRadioImg" alt="">
-
-    <!-- <audio controls>
-        <source src="https://capsaohdf.ice.infomaniak.ch/capsaohdf-128.aac">
-    </audio> -->
-
-    <!-- <audio :src="currentRadio"></audio> -->
-
-    <!-- <audio :ref="currentRadio"></audio> -->
-
+    <main>
+        <div id="radio">
+            <select v-model="selectedRadio" v-on:change="changeRadio">
+                <option :value="radio.nom" v-for="radio in tabRadio">
+                    {{ radio.nom }}
+                </option>
+            </select>
+            <img :src="currentRadioImg" id="radioImg" alt="">
+            <div id="player" @click="buttonPlayPause">
+                <i class="fa-solid fa-play fa-2xl" ref="playLogo"></i>
+            </div>
+            <audio :src="currentRadio" id="audio" ref="audio"></audio>
+        </div>
+    </main>
 
 </template>
 
 <style scoped>
-
+main{
+    height: 70vh;
+}
 </style>

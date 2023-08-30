@@ -15,7 +15,7 @@ header{
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    /* opacity: 0; */
+    opacity: 0;
 }
 
 #menuPhone{
