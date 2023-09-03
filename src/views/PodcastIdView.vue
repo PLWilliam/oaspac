@@ -8,7 +8,6 @@ const router = useRouter();
 
 
 const currentPodcast = ref('');
-const isMounted = ref(false);
 
 const play = ref([]);
 const isPlay = ref([]);
@@ -16,6 +15,23 @@ const isPlay = ref([]);
 const playLogo = ref([]);
 
 const audio = ref()
+const loaded = ref(false);
+
+const getEmission = async()=>{
+  const podcastRss = await fetchData('https://latinoclub.fr/api/api_podcasts');
+  const id = router.currentRoute.value.params.id;
+  // console.log(podcastRss);
+
+  podcastRss['hydra:member'].forEach(async (element) => {
+    // console.log(element.link);
+    const current = await fetchRss(element.link);
+    if(current.title===id){
+        currentPodcast.value = current;
+        countPlayButton(currentPodcast.value);
+        // console.log(currentPodcast.value);
+    }
+  });
+}
 
 const buttonPlayPause = (idx)=>{
 
@@ -56,20 +72,8 @@ const countPlayButton = (current)=>{
 
 
 onBeforeMount(async()=>{
-  const podcastRss = await fetchData('https://latinoclub.fr/api/api_podcasts');
-  const id = router.currentRoute.value.params.id;
-  // console.log(podcastRss);
-
-  podcastRss['hydra:member'].forEach(async (element) => {
-    // console.log(element.link);
-    const current = await fetchRss(element.link);
-    if(current.title===id){
-        currentPodcast.value = current;
-        countPlayButton(currentPodcast.value);
-        isMounted.value = true;
-        // console.log(currentPodcast.value);
-    }
-  });
+    await getEmission();
+  loaded.value = true;
   
 })
 
@@ -78,22 +82,29 @@ onBeforeMount(async()=>{
 </script>
 
 <template>
+    <div v-if="loaded">
 
-    <main>
-        <div class="container">
-            <div class="allPodcast">
-                <div class="singlePodcast" v-for="( episode,index ) in currentPodcast.items">
-                    <img :src="episode.itunes_image.href" alt="">
-                    <span>{{ episode.title }}</span>
-                    <div class="playerPodcast" @click="buttonPlayPause(index)">
-                        <i class="fa-solid fa-play fa-xl" ref="playLogo"></i>
+        <main>
+            <h2 class="titre">LES EPISODES</h2>
+            <div class="container">
+                <div class="allPodcast">
+                    <div class="singlePodcast" v-for="( episode,index ) in currentPodcast.items">
+                        <div class="podcast">   
+                            <div><img :src="episode.itunes_image.href" alt=""></div>
+                            <span>{{ episode.title }}</span>
+                            <div class="playerPodcast" @click="buttonPlayPause(index)">
+                                <i class="fa-solid fa-play fa-xl" ref="playLogo"></i>
+                            </div>
+                            <audio :src="episode.enclosures[0].url" ref="audio"></audio>
+                        </div>    
                     </div>
-                    <audio :src="episode.enclosures[0].url" ref="audio"></audio>
                 </div>
             </div>
-        </div>
-    </main>
-
+        </main>
+    </div>
+    <div v-else>
+        LOADING . . .
+    </div>
 
 </template>
 

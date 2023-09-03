@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { parseString } from "xml2js";
+import { parse } from 'rss-to-json';
 
-const test = '';
+// const test = '';
 
 export const chosenPodcast = (id)=>{
     return  id;
@@ -23,12 +23,7 @@ export const fetchData = async (url) =>{
 
 
 export const fetchRss = async (elem) => {
-
+// console.log(elem)
   return await parse(elem);
     
-
-}
-
-export const fetchRssURL = async (url) => {
-  return await parseString(url);
 }

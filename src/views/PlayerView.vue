@@ -14,6 +14,8 @@ const audio = ref();
 
 const playLogo = ref();
 
+const loaded = ref(false);
+
 
 
 
@@ -63,33 +65,37 @@ const updateRadioInfo = (radio)=>{
 
 onBeforeMount(async()=>{
   await getAllRadio();
-
+  loaded.value = true
 })
 
 
 </script>
 
 <template>
-
-    <main>
-        <div id="radio">
-            <select v-model="selectedRadio" v-on:change="changeRadio">
-                <option :value="radio.nom" v-for="radio in tabRadio">
-                    {{ radio.nom }}
-                </option>
-            </select>
-            <img :src="currentRadioImg" id="radioImg" alt="">
-            <div id="player" @click="buttonPlayPause">
-                <i class="fa-solid fa-play fa-2xl" ref="playLogo"></i>
+    <div v-if="loaded">
+        <main>
+            <div id="radio">
+                <select v-model="selectedRadio" v-on:change="changeRadio">
+                    <option :value="radio.nom" v-for="radio in tabRadio">
+                        {{ radio.nom }}
+                    </option>
+                </select>
+                <img :src="currentRadioImg" id="radioImg" alt="">
+                <div id="player" @click="buttonPlayPause">
+                    <i class="fa-solid fa-play fa-2xl" ref="playLogo"></i>
+                </div>
+                <audio :src="currentRadio" id="audio" ref="audio"></audio>
             </div>
-            <audio :src="currentRadio" id="audio" ref="audio"></audio>
-        </div>
-    </main>
+        </main>
+    </div>
+    <div v-else>
+        LOADING . . .
+    </div>
 
 </template>
 
 <style scoped>
 main{
-    height: 70vh;
+    height: 60vh;
 }
 </style>

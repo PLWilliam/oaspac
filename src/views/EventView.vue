@@ -1,55 +1,77 @@
 <script setup>
 
-import axios from 'axios';
-import { fetchRss,fetchData,fetchRssURL } from "@/services/api.js";
+import { fetchRss,fetchData } from "@/services/api.js";
 import { ref,onBeforeMount } from 'vue';
 import { parseString } from "xml2js";
+import { decode } from "html-entities";
 
-const tabEvent = ref();
+const eventObject = ref({});
+const loaded = ref(false);
 
 const getAllEvent = async()=>{
-  
-    // const event = await fetchData('https://latinoclub.fr/event')
-    // console.log(event.fileContent);
+  const xml = await fetchData('https://latinoclub.fr/api/event');
+  await XML(xml);
 
-    // await fetchRss(); 
+}
 
+const XML = async (elem) => {
 
-
-    // console.log(await fetchRss('https://capsao.com/rss-feed-34'));
-    const events = await axios.get('https://latinoclub.fr/api/event')
-    // console.log(events);
-    // console.log(parseString('https://capsao.com/rss-feed-34'));
-
-
-  if(events.status==200){
-    console.log(events.data.fileContent);
-    // console.log(parseString(events.data.fileContent));
-    parseString(events.data.fileContent, (err,result)=>{
-      if (err) {
+  await parseString(elem.fileContent, (err,result)=>{
+    if (err) {
           console.error(err);
-          // return err;
-        }else{
-          console.log(result);
-          return result;
+        } else {
+          result.rss.channel[0].item.forEach((item) => {
+            const itemDate = item["content:encoded"][0].split("<br");
+
+            if (eventObject.value.hasOwnProperty(itemDate[0])) {
+              item.name = itemDate[0];
+              eventObject.value[itemDate[0]].push(item);
+            } else {
+              item.name = itemDate[0];
+              eventObject.value[itemDate[0]] = [item];
+            }
+          });
+          // console.log("dd", eventObject.value);
         }
-    })
-  }
+  });
+}
 
-  
-
+const goto = (event)=>{
+  // console.log(event.link[0]);
+  window.open(event.link[0], "_blank");
 }
 
 onBeforeMount(async()=>{
   await getAllEvent();
-
+  loaded.value = true
 })
 
 </script>
 
 <template>
+    <!-- <h1>Event</h1> -->
+    <div v-if="loaded">
+      <div class="allEvent">
+        <div v-for="lol in eventObject">
+          <h2 class="titre">{{ lol[0].name }}</h2>
+          <div class="event">
+            <div class="soloEvent" v-for="event in lol" @click="goto(event)">
+              <!-- <a :href="event.link[0]" target="_blank"> -->
+                <div><img :src="event.enclosure[0].$.url" alt=""></div>
+                <h3>{{ decode(event.title[0]) }}</h3>
+                <p>{{ decode(event.description[0]) }}</p>
+                <!-- {{ decode(event[0]['content:encoded'][0]) }} -->
+                <!-- <button>eaze</button> -->
+              <!-- </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+        LOADING . . .
+    </div>
 
-    <h1>Event</h1>
 
 </template>
 

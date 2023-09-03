@@ -18,6 +18,10 @@ header{
     opacity: 0;
 }
 
+#checkbox:hover{
+    cursor: pointer;
+}
+
 #menuPhone{
     position: absolute;
     right :20px;
@@ -71,6 +75,7 @@ header{
 
 .subMenuPhone>p:hover{
     cursor: pointer;
+    color:white
 }
 
 #checkbox:checked~ .subMenuPhone{
@@ -96,6 +101,7 @@ header{
 
 .subMenu>p:hover{
     cursor: pointer;
+    color:white
 }
 
 footer{
@@ -124,7 +130,7 @@ footer span{
 
 #copyright{
     position:absolute;
-    right: 0;
+    right: 5px;
     bottom: 0;
     font-size: 12px;
     /* position:fixed; */
