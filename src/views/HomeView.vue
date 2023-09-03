@@ -4,6 +4,8 @@ import { ref,onBeforeMount } from 'vue';
 import { fetchRss,fetchData } from "@/services/api.js";
 import { useRouter } from 'vue-router';
 
+document.title = 'Accueil';
+
 const router = useRouter();
 
 const sliders = ref();

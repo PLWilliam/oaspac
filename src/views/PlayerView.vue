@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { ref,onBeforeMount } from 'vue';
 
+document.title = 'Player';
 
 const tabRadio = ref();
 const currentRadio = ref();

@@ -4,6 +4,8 @@ import { ref,onBeforeMount } from 'vue';
 import { fetchRss,fetchData } from "@/services/api.js";
 import { useRouter } from 'vue-router';
 
+document.title = 'Podcasts';
+
 const router = useRouter();
 
 const tabPodcast = ref([]);

@@ -4,6 +4,8 @@ import { useRouter } from 'vue-router'
 import {fetchData,fetchRss} from '@/services/api.js'
 import { ref,onBeforeMount} from 'vue'
 
+document.title = 'Emission';
+
 const router = useRouter();
 
 

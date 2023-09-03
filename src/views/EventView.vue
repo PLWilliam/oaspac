@@ -5,6 +5,8 @@ import { ref,onBeforeMount } from 'vue';
 import { parseString } from "xml2js";
 import { decode } from "html-entities";
 
+document.title = 'Evenement';
+
 const eventObject = ref({});
 const loaded = ref(false);
 
