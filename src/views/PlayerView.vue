@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { ref,onBeforeMount } from 'vue';
+import { fetchRss,fetchData } from "@/services/api.js";
 
 document.title = 'Player';
 
@@ -21,17 +22,12 @@ const loaded = ref(false);
 
 
 const getAllRadio = async()=>{
-  
-  const radioList = await axios.get('https://latinoclub.fr/api/api_radios')
+    const radioList = await fetchData('https://latinoclub.fr/api/api_radios')
 
-  if(radioList.status==200){
-    tabRadio.value = radioList.data['hydra:member'];
+    tabRadio.value = radioList['hydra:member'];
     const defaultRadio = tabRadio.value.find((e)=> e.isDefault == true);
     updateRadioInfo(defaultRadio);
-  }
-  else{
-    throw new Error("Problem getting radio");
-  }
+
 }
 
 const changeRadio = ()=>{

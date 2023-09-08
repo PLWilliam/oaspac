@@ -172,6 +172,8 @@ onBeforeMount(async()=>{
 
     .slider>div:nth-child(2),.slider>div:nth-child(3){
         top:45%;
+        height: 55px;
+        width: 55px;
     }
 
     .containerPodcast{
@@ -181,7 +183,7 @@ onBeforeMount(async()=>{
 
     .listPodcast{
         border-radius: 10px;
-        width: 75%;
+        width: 74vw;
         justify-content: center;
         padding: 2%;
         gap:75px;
@@ -205,9 +207,16 @@ onBeforeMount(async()=>{
 
     .txt p{
         margin-bottom: 0;
-        width: 75%;
+        width: 74vw;
         border-radius: 10px 10px 0 0;
         padding: 2%;
+    }
+
+    .titre{
+        margin-top: 50px;
+        margin-left:10vw;
+        border-radius: 10px;
+        padding: 15px
     }
 }
 </style>

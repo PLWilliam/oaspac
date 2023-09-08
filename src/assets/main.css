@@ -137,7 +137,7 @@ body{
 .titre{
   background: linear-gradient(180deg, var(--orange-start) 0%, var(--orange-end));
   width: fit-content;
-  padding: 5px 15px 5px 5px ;
+  padding: 10px 20px 10px 10px ;
   border-radius: 0 10px 10px  0;
   color: white;
 }
@@ -180,9 +180,6 @@ body{
 
 @media (min-width:768px){
   
-  main{
-    height: fit-content;
-  }
 
   .titre{
     padding: 15px 30px 15px 10px ;

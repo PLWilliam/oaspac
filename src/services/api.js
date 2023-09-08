@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { parse } from 'rss-to-json';
 
-// const test = '';
-
 export const chosenPodcast = (id)=>{
     return  id;
 }
@@ -17,7 +15,7 @@ export const fetchData = async (url) =>{
       return podcastList.data;
     }
     else{
-      throw new Error("Problem getting radio");
+      throw new Error("Problem axios");
     }
 }
 
