@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 
 
 const router = createRouter({
+  mode:'history',
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {

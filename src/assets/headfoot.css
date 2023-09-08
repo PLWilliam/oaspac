@@ -136,7 +136,7 @@ footer span{
     /* position:fixed; */
 }
 
-@media (min-width:576px){
+@media (min-width:768px){
     
     .subMenuPhone,#menuPhone,#checkbox{
         display:none;

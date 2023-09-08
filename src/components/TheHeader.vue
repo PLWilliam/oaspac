@@ -30,7 +30,7 @@ const event = () =>{
 
 <template>
     <header>
-        <img src="@/assets/img/Oaspac.png" id="logo" alt="">
+        <img src="@/assets/img/Oaspac.png" id="logo" alt="" @click="home">
         <input type="checkbox" id="checkbox" v-model="isChecked">
         <div id="menuPhone">
             <div></div>
@@ -63,5 +63,9 @@ const event = () =>{
         transform:rotate(-90deg);
         z-index: 99998;
         background: none;
+    }
+
+    #logo:hover{
+        cursor: pointer;
     }
 </style>

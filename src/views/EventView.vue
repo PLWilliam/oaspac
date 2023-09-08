@@ -54,10 +54,10 @@ onBeforeMount(async()=>{
     <!-- <h1>Event</h1> -->
     <div v-if="loaded">
       <div class="allEvent">
-        <div v-for="lol in eventObject">
-          <h2 class="titre">{{ lol[0].name }}</h2>
+        <div v-for="dateObject in eventObject">
+          <h2 class="titre">{{ dateObject[0].name }}</h2>
           <div class="event">
-            <div class="soloEvent" v-for="event in lol" @click="goto(event)">
+            <div class="soloEvent" v-for="event in dateObject" @click="goto(event)">
               <!-- <a :href="event.link[0]" target="_blank"> -->
                 <div><img :src="event.enclosure[0].$.url" alt=""></div>
                 <h3>{{ decode(event.title[0]) }}</h3>

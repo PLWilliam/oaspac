@@ -37,6 +37,8 @@ const getAllRadio = async()=>{
 const changeRadio = ()=>{
     const newRadio = tabRadio.value.find((e)=> e.nom == selectedRadio.value);
     updateRadioInfo(newRadio);
+    playLogo.value.classList.remove("fa-pause");
+    playLogo.value.classList.add("fa-play");
 }
 
 const buttonPlayPause = ()=>{
@@ -96,7 +98,22 @@ onBeforeMount(async()=>{
 </template>
 
 <style scoped>
+
 main{
+    /* height: 60vh; */
+    margin-bottom: 15vh;
+
+}
+
+#radio{
     height: 60vh;
 }
+
+@media (min-width:768px){
+
+    #radio{
+        height: 100%;
+    }
+}
+
 </style>

@@ -77,18 +77,21 @@ onBeforeMount(async()=>{
         </div>
 
         <h2 class="titre">PODCASTS</h2>
-        <div class="listPodcast">
-            <div v-for="podcast in podcasts">
-                <img :src="podcast.image" alt="" @click="goto(podcast.title)">
-                <div class="podcastTitle">{{podcast.title}}</div>
+        <div class="containerPodcast">
+            <div class="listPodcast">
+                <div v-for="podcast in podcasts">
+                    <img :src="podcast.image" alt="" @click="goto(podcast.title)">
+                    <div class="podcastTitle">{{podcast.title}}</div>
+                </div>
             </div>
         </div>
 
+        <h2 class="titre">{{txt.titre}}</h2>
         <div class="txt">
-            <h2 class="titre">{{txt.titre}}</h2>
-            <p>{{txt.texte}}</p>
+            <div class="containerTxt">
+                <p>{{txt.texte}}</p>
+            </div>
         </div>
-
     </div>
     <div v-else>
         LOADING . . .
@@ -161,26 +164,50 @@ onBeforeMount(async()=>{
     background-color: rgb(217, 217, 217, 0.5);
 }
 
-@media (min-width:576px){
+@media (min-width:768px){
 
     .slider{
-        width: 20%;
+        width: 40%;
     }
 
     .slider>div:nth-child(2),.slider>div:nth-child(3){
         top:45%;
     }
 
-    .listPodcast{
+    .containerPodcast{
+        display: flex;
         justify-content: center;
-        padding: 1% 0 1% 0;
+    }
+
+    .listPodcast{
+        border-radius: 10px;
+        width: 75%;
+        justify-content: center;
+        padding: 2%;
         gap:75px;
         overflow-x:hidden;
+        flex-wrap: wrap;
+    }
+
+    .listPodcast img{
+        width: 150px;
+    }
+
+    .podcastTitle{
+        width: 150px;
+    }
+
+    .containerTxt{
+        display: flex;
+        justify-content: center;
+        width: 100%;
     }
 
     .txt p{
-        padding: 1% ;
-        padding-left: 5%;
+        margin-bottom: 0;
+        width: 75%;
+        border-radius: 10px 10px 0 0;
+        padding: 2%;
     }
 }
 </style>
