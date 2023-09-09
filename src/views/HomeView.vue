@@ -107,6 +107,9 @@ onBeforeMount(async()=>{
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 30vh;
+    /* max-height:300px;
+    height: auto; */
 }
 .slider{
     width: 80%;
@@ -116,6 +119,8 @@ onBeforeMount(async()=>{
 .slider img{
     width: 100%;
     border-radius: 10px;
+    height:100%;
+    object-fit: contain;
 }
 
 .slider>div:nth-child(2),.slider>div:nth-child(3){
@@ -129,7 +134,9 @@ onBeforeMount(async()=>{
     position: absolute;
     top:40%;
 }
-
+.slider>div:nth-child(2){
+    left: 0;
+}
 .slider>div:nth-child(3){
     right: 0;
 }
@@ -174,6 +181,17 @@ onBeforeMount(async()=>{
         top:45%;
         height: 55px;
         width: 55px;
+    }
+
+    .slider>div:nth-child(2){
+        left: 10px;
+    }
+    .slider>div:nth-child(3){
+        right: 10px;
+    }
+
+    .containerSlider{
+        height: 45vh;
     }
 
     .containerPodcast{

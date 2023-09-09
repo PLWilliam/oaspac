@@ -79,7 +79,12 @@ onBeforeMount(async()=>{
                         {{ radio.nom }}
                     </option>
                 </select>
-                <img :src="currentRadioImg" id="radioImg" alt="">
+                <div v-if="currentRadioImg !== undefined ">
+                    <img :src="currentRadioImg" id="radioImg" alt="">
+                </div>
+                <div v-else>
+                    <img src="@/assets/img/6202865f0fb1c2-45156718-64b68a534930a902913569.jpg" id="radioImg" alt="">
+                </div>
                 <div id="player" @click="buttonPlayPause">
                     <i class="fa-solid fa-play fa-2xl" ref="playLogo"></i>
                 </div>
