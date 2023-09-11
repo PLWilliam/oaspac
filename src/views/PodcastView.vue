@@ -39,14 +39,14 @@ onBeforeMount(async()=>{
 
 <template>
   <div v-if="loaded">
-    <h2 class="titre">NOS PODCASTS</h2>
+    <h2>NOS PODCASTS</h2>
     
     <main>
       <div class="container">
         <div class="allPodcast">
           <div class="singlePodcast" v-for="podcast in tabPodcast">
             <div class="podcast">
-              <div><img :src="podcast.image" alt="" @click="soloPodcast(podcast.title)"></div>
+              <div><img :src="podcast.image" :alt="podcast.title" @click="soloPodcast(podcast.title)"></div>
               <span>{{ podcast.title }}</span>
             </div>
           </div> 

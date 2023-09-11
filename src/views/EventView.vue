@@ -55,7 +55,7 @@ onBeforeMount(async()=>{
     <div v-if="loaded">
       <div class="allEvent">
         <div v-for="dateObject in eventObject">
-          <h2 class="titre">{{ dateObject[0].name }}</h2>
+          <h2>{{ dateObject[0].name }}</h2>
           <div class="event">
             <div class="soloEvent" v-for="event in dateObject" @click="goto(event)">
               <!-- <a :href="event.link[0]" target="_blank"> -->

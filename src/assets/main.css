@@ -134,7 +134,7 @@ body{
   margin-bottom: 20vh;
 }
 
-.titre{
+h2{
   background: linear-gradient(180deg, var(--orange-start) 0%, var(--orange-end));
   width: fit-content;
   padding: 10px 20px 10px 10px ;
@@ -181,7 +181,7 @@ body{
 @media (min-width:768px){
   
 
-  .titre{
+  h2{
     padding: 15px 30px 15px 10px ;
   }
 

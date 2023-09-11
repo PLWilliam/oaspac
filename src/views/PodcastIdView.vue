@@ -87,7 +87,7 @@ onBeforeMount(async()=>{
     <div v-if="loaded">
 
         <main>
-            <h2 class="titre">LES EPISODES</h2>
+            <h2>LES EPISODES</h2>
             <div class="container">
                 <div class="allPodcast">
                     <div class="singlePodcast" v-for="( episode,index ) in currentPodcast.items">

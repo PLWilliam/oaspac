@@ -76,7 +76,7 @@ onBeforeMount(async()=>{
             </div>
         </div>
 
-        <h2 class="titre">PODCASTS</h2>
+        <h2>PODCASTS</h2>
         <div class="containerPodcast">
             <div class="listPodcast">
                 <div v-for="podcast in podcasts">
@@ -86,7 +86,7 @@ onBeforeMount(async()=>{
             </div>
         </div>
 
-        <h2 class="titre">{{txt.titre}}</h2>
+        <h2>{{txt.titre}}</h2>
         <div class="txt">
             <div class="containerTxt">
                 <p>{{txt.texte}}</p>
@@ -230,7 +230,7 @@ onBeforeMount(async()=>{
         padding: 2%;
     }
 
-    .titre{
+    h2{
         margin-top: 50px;
         margin-left:10vw;
         border-radius: 10px;
