@@ -119,6 +119,10 @@ footer a{
     color: black;
 }
 
+footer a:hover{
+    color: var(--grey);
+}
+
 footer span{
     /* border: 2px black solid; */
     margin-left: 10px;

@@ -26,6 +26,11 @@ const event = () =>{
     isChecked.value = false;
 }
 
+const setting = () =>{
+    router.push({name:'setting'});
+    isChecked.value = false;
+}
+
 </script>
 
 <template>
@@ -42,12 +47,14 @@ const event = () =>{
             <p @click="player">Player</p>
             <p @click="podcast">Podcast</p>
             <p @click="event">Evenement</p>
+            <p @click="setting">Options</p>
         </div>
         <div class="subMenu">
             <p @click="home">Accueil</p>
             <p @click="player">Player</p>
             <p @click="podcast">Podcast</p>
             <p @click="event">Evenement</p>
+            <p @click="setting">Options</p>
         </div>
     </header>
 
